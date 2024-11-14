@@ -1,0 +1,19 @@
+{
+  "name": "bookNotesCapstoneProject",
+  "version": "1.0.0",
+  "description": "Book Notes. A website where you can add your notes of a book that you just read and keep your reviews on track.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Firdavs",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "pg": "^8.13.1"
+  }
+}
