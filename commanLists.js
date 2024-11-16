@@ -1,6 +1,6 @@
 
 //// api request to get COVER of the book
-const API_COVER_URL = "https://covers.openlibrary.org/b/isbn";
+const API_COVER_URL = "https://covers.openlibrary.org/b/id";
 
 // insert cover id here
 const here = "";
@@ -12,7 +12,7 @@ const API_SEARCH_URL = "https://openlibrary.org/search.json";
 
 //get TITLE of The Book from the frontend
 const titleSearch = req.body.titleSearch;
-const result = await axios.get(API_SEARCH_URL + `?q=${titleSearch}`);
+const result2 = await axios.get(API_SEARCH_URL + `?q=${titleSearch}`);
 
 
 //// To get author details

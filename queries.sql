@@ -15,7 +15,9 @@ CREATE TABLE notes (
 );
 
 
-
+INSERT INTO notes (title, isbn, author_name, cover_id, published_year, rate, review)
+VALUES ('legend of wars', 'VA713791I', 'John Adam', '883283', '2000-12-10', '5', 'I strongly recommend this book to everyone. The insight of what I got from it was very promising and definetely must read book.'), 
+		('Noitengem', 'VA728332I', 'Backham', '283110', '2005-04-11', '9', 'I strongly recommend this book to everyone. The insight of what I got from it was very promising and definetely must read book.')
 
 
 

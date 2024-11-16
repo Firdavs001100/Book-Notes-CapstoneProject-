@@ -1,0 +1,31 @@
+<%- include('partials/header.ejs') %>
+
+<form action="/delete/<% post.id %>" method="POST" class="container reviewPageCon">
+    <div class="postConR">
+        <div class="detailsCon">
+            <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
+            <div class="bookInfoCon">
+                <p class="title">
+                    <%= post.title %>
+                </p>
+                <div class="yearAndIsbnCon">
+                    <p class="publishedYear">Published Year: <%= post.published_year %>
+                    </p>
+                    <p class="divider">|</p>
+                    <p class="isbn">ISBN: <%= post.isbn %>
+                    </p>
+                </div>
+                <p class="rating">Rating: <%= post.rate %>/10</p>
+            </div>
+        </div>
+        <div class="reviewCon">
+            <p class="review"><% post.review %></p>
+        </div>
+        <div class="buttonsCon">
+            <a class="editBtn" href="/edit/<%= post.id %>">Edit</a>
+            <button class="deleteBtn" type="submit">Delete</button>
+        </div>
+    </div>
+</form>
+
+<%- include('partials/footer.ejs') %>

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
@@ -20,11 +20,15 @@ const db = new pg.Client({
 
 db.connect();
 
+// let postsList = [];
+
 app.get("/", async (req, res) => {
     try {
-
+        const response = await db.query("SELECT * FROM notes");
+        const postsList = response.rows;
+        
         res.render("index.ejs", {
-
+            posts: postsList,
         });
     } catch(err) {
         console.error("The request was failed. ", err.message);
@@ -34,18 +38,39 @@ app.get("/", async (req, res) => {
     }
 });
 
-app.get("/review", (req, res) => {
+app.get("/review/:id", async (req, res) => {
     try {
+        const post_id = parseInt(req.params.id, 10);
+
+        const response = await db.query("SELECT * FROM notes WHERE id = $1", [post_id]);
+
+        const specificPost = response.rows[0];
+        const thatPost = specificPost;
 
         res.render("reviewPage.ejs", {
-
+            post: thatPost
         });
     } catch (err) {
-        console.error("The request was failed. ", err.message);
-        res.render("reviewPage.ejs", {
-            error: err.message
-        });
+        console.log("The request was failed. ", err.message);
     } 
+});
+
+app.get("/edit/:id", async (req, res) => {
+    try {
+        const post_id = parseInt(req.params.id, 10);
+
+        const response = await db.query("SELECT * FROM notes WHERE id = $1", [post_id]);
+
+        const specificPost = response.rows[0];
+        const thatPost = specificPost;
+
+
+        res.render("editPage.ejs", {
+            post: thatPost
+        });
+    } catch (err) {
+        console.log("The request was failed. ", err.message);
+    }
 });
 
 app.post("/create", (req, res) => {
@@ -62,8 +87,9 @@ app.post("/create", (req, res) => {
     }
 });
 
-app.post("/edit", (req, res) => {
+app.post("/update/:id", (req, res) => {
     try {
+        const idOfPostToUpdate = parseInt(req.params.id, 10);
 
         res.render("editPage.ejs", {
 
@@ -76,9 +102,11 @@ app.post("/edit", (req, res) => {
     }
 });
 
-app.delete("/delete", (req, res) => {
+app.delete("/delete/:id", async (req, res) => {
     try {
+        const idToDelete = parseInt(req.params.id, 10);
 
+        await db.query("DELETE FROM notes WHERE id = $1", [idToDelete]);
         res.redirect("/");
     } catch (err) {
         console.error("The request was failed. ", err.message);
