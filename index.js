@@ -20,7 +20,14 @@ const db = new pg.Client({
 
 db.connect();
 
-// let postsList = [];
+let currentPostId;
+
+async function gettingThePost() {
+    const response = await db.query("SELECT * FROM notes WHERE id = $1", [currentPostId]);
+
+    const specificPost = response.rows[0];
+    return specificPost;
+}
 
 app.get("/", async (req, res) => {
     try {
@@ -40,15 +47,11 @@ app.get("/", async (req, res) => {
 
 app.get("/review/:id", async (req, res) => {
     try {
-        const post_id = parseInt(req.params.id, 10);
-
-        const response = await db.query("SELECT * FROM notes WHERE id = $1", [post_id]);
-
-        const specificPost = response.rows[0];
-        const thatPost = specificPost;
+        currentPostId = parseInt(req.params.id, 10);
+        const currentPost = await gettingThePost();
 
         res.render("reviewPage.ejs", {
-            post: thatPost
+            post: currentPost
         });
     } catch (err) {
         console.log("The request was failed. ", err.message);
@@ -57,62 +60,91 @@ app.get("/review/:id", async (req, res) => {
 
 app.get("/edit/:id", async (req, res) => {
     try {
-        const post_id = parseInt(req.params.id, 10);
-
-        const response = await db.query("SELECT * FROM notes WHERE id = $1", [post_id]);
-
-        const specificPost = response.rows[0];
-        const thatPost = specificPost;
-
+        currentPostId = parseInt(req.params.id, 10);
+        const currentPost = await gettingThePost();
 
         res.render("editPage.ejs", {
-            post: thatPost
+            post: currentPost
         });
     } catch (err) {
         console.log("The request was failed. ", err.message);
     }
 });
 
-app.post("/create", (req, res) => {
+app.get("/create", (req, res) => {
     try {
-
         res.render("postCreation.ejs", {
-
         });
     } catch (err) {
-        console.error("The request was failed. ", err.message);
-        res.render("postCreation.ejs", {
-            error: err.message
-        });
+        console.log("The request was failed. ", err.message);
     }
 });
 
-app.post("/update/:id", (req, res) => {
+app.post("/getBookTitle", async (req, res) => {
     try {
-        const idOfPostToUpdate = parseInt(req.params.id, 10);
+        const bookName = req.body.bookName;
 
-        res.render("editPage.ejs", {
+        const response = await axios.get(`https://openlibrary.org/search.json?q=${bookName}&limit=1`);
+        const data = response.data;
 
+        const info = {
+            title: bookName,
+            cover_id: data.docs[0].cover_i,
+            isbn: data.docs[0].isbn[0],
+            published_year: data.docs[0].first_publish_year
+        };
+        console.log(info);
+
+        res.render("postCreation.ejs", {
+            info: info
         });
     } catch (err) {
-        console.error("The request was failed. ", err.message);
-        res.render("editPage.ejs", {
-            error: err.message
-        });
+        console.log("The request was failed. ", err.message);
     }
 });
 
-app.delete("/delete/:id", async (req, res) => {
+app.post("/create", async (req, res) => {
+    try {
+        const title = req.body.title;
+        const isbn = req.body.isbn;
+        const cover_id = req.body.cover_id;
+        const published_year = req.body.published_year;
+        const rating = req.body.rating;
+        const review = req.body.review;
+
+        await db.query("INSERT INTO notes (title, isbn, cover_id, published_year, rating, review) VALUES ($1, $2, $3, $4, $5, $6)", [title, isbn, cover_id, published_year, rating, review]);
+        
+        res.redirect("/");
+    } catch (err) {
+        console.log("The request was failed. ", err.message);
+    }
+});
+
+app.post("/update/:id", async (req, res) => {
+    try {
+        currentPostId = parseInt(req.params.id, 10);
+        const newRating = req.body.rating;
+        const newReview = req.body.review;
+        
+        await db.query("UPDATE notes SET rate = $1, review = $2 WHERE id = $3", [newRating, newReview, currentPostId]);
+
+        const updatedPost = await gettingThePost();
+        res.render("reviewPage.ejs", {
+            post: updatedPost
+        });
+    } catch (err) {
+        console.log("The request was failed. ", err.message);
+    }
+});
+
+app.post("/delete/:id", async (req, res) => {
     try {
         const idToDelete = parseInt(req.params.id, 10);
 
         await db.query("DELETE FROM notes WHERE id = $1", [idToDelete]);
         res.redirect("/");
     } catch (err) {
-        console.error("The request was failed. ", err.message);
-        res.render("index.ejs", {
-            error: err.message
-        });
+        console.log("The request was failed. ", err.message);
     }
 });
 

@@ -1,0 +1,54 @@
+<%- include('partials/header.ejs') %>
+
+<form action="/create" method="POST" class="container postCreationPage">
+    <h1>Write a Review</h1>
+    <hr>
+    <% if(locals.info) { %>
+       <div class="detailsCon">
+            <img src="https://covers.openlibrary.org/b/id/<%= info.cover_id %>-M.jpg" alt="cover of the book">
+            <div class="bookInfoCon">
+                <p class="title"><%= info.title %></p>
+                <div class="yearAndIsbnCon">
+                    <p class="publishedYear">Published Year: <%= info.published_year %></p>
+                    <p class="divider">|</p>
+                    <p class="isbn">ISBN: <%= info.isbn %></p>
+                </div>
+            </div>
+        </div>
+        <!-- Hidden input fields to pass the data to the backend and insert it to the database -->
+        <input type="hidden" name="cover_id" value="<%= info.cover_id %>">
+        <input type="hidden" name="title" value="<%= info.title %>">
+        <input type="hidden" name="published_year" value="<%= info.published_year %>">
+        <input type="hidden" name="isbn" value="<%= info.isbn %>">
+    <% } else { %>
+        <label for="bookName">Name of The book:</label>
+        <div class="searchCon">
+            <input class="bookName" type="text" id="bookName" name="bookName" placeholder="Type the book name...">
+            <button type="submit" formaction="/getBookTitle">Search</button>
+        </div>
+    <% } %>
+    <div class="ratingCon">
+        <label for="rating">Your Rating:</label>
+        <!-- <input class="rating" type="number" id="rating" name="rating" min="1" max="10" placeholder="1 to 10"> -->
+        <select class="rating" id="rating" name="rating">
+            <option value="">Select a rating</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+    <div class="reviewCon">
+        <label for="review">Your Review/Notes:</label>
+        <textarea class="review" type="text" id="review" name="review" placeholder=""></textarea>
+    </div>
+    <button class="createBtn" type="submit">Create</button>
+</form>
+
+<%- include('partials/footer.ejs') %>

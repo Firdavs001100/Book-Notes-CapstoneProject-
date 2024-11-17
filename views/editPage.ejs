@@ -1,19 +1,15 @@
 <%- include('partials/header.ejs') %>
 
-<form action="/update/<% post.id %>" method="POST" class="container editPageCon">
+<form action="/update/<%= post.id %>" method="POST" class="container editPageCon">
     <div class="postConR">
         <div class="detailsCon">
             <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
             <div class="bookInfoCon">
-                <p class="title">
-                    <%= post.title %>
-                </p>
+                <p class="title"><%= post.title %></p>
                 <div class="yearAndIsbnCon">
-                    <p class="publishedYear">Published Year: <%= post.published_year %>
-                    </p>
+                    <p class="publishedYear">Published Year: <%= post.published_year %></p>
                     <p class="divider">|</p>
-                    <p class="isbn">ISBN: <%= post.isbn %>
-                    </p>
+                    <p class="isbn">ISBN: <%= post.isbn %></p>
                 </div>
             </div>
         </div>

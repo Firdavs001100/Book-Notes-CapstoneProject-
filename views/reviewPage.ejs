@@ -1,6 +1,6 @@
 <%- include('partials/header.ejs') %>
 
-<form action="/delete/<% post.id %>" method="POST" class="container reviewPageCon">
+<form action="/delete/<%= post.id %>" method="POST" class="container reviewPageCon">
     <div class="postConR">
         <div class="detailsCon">
             <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="reviewCon">
-            <p class="review"><% post.review %></p>
+            <p class="review"><%= post.review %></p>
         </div>
         <div class="buttonsCon">
             <a class="editBtn" href="/edit/<%= post.id %>">Edit</a>

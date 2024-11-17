@@ -5,7 +5,7 @@
         <h1>Welcome to NoteCore</h1>
         <p>In this website, I post reviews of books that I read and gave them a rating on how much I recommend it to others, as well as key notes in this book.</p>
     </div>
-    <% posts.forEach(post => {%>
+    <% locals.posts.forEach(post => {%>
     <div class="postCon">
         <div class="detailsCon">
             <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
@@ -20,10 +20,9 @@
             </div>
         </div>
         <div class="reviewCon">
-            <p class="review"><%=  post.review.length > 50 ? post.review.substring(0, 50): post.review %>
-                <%  if (post.review.length > 50) { %>
-                    <a class="readMoreBtn" href="/review/<%= post.id %>">Read More</a>
-                <% } %>
+            <p class="review">
+                <%=  post.review.length > 50 ? post.review.substring(0, 50): post.review %>
+                <a class="readMoreBtn" href="/review/<%= post.id %>">Read More</a>      
             </p>
         </div>
     </div>
