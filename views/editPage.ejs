@@ -7,15 +7,14 @@
             <div class="bookInfoCon">
                 <p class="title"><%= post.title %></p>
                 <div class="yearAndIsbnCon">
-                    <p class="publishedYear">Published Year: <%= post.published_year %></p>
-                    <p class="divider">|</p>
                     <p class="isbn">ISBN: <%= post.isbn %></p>
+                    <p class="publishedYear">Published Year: <%= post.published_year %></p>
                 </div>
             </div>
         </div>
         <div class="ratingCon">
             <label for="rating">Rating:</label>
-            <input class="rating" name="rating" id="rating" value="<%= post.rate %>">
+            <input class="rating" name="rating" id="rating" value="<%= post.rating %>">
         </div>
         <div class="reviewCon">
             <label for="review"></label>

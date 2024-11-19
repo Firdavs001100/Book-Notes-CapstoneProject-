@@ -1,0 +1,72 @@
+.nav-item1 {
+    margin-right: 15px;
+}
+
+.welcomeCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcomeCon p {
+    width: 600px;
+    letter-spacing: 2px;
+    line-height: 2;
+    text-align: center;
+    /* need to add font styling */
+}
+
+.postIntroCon {
+    display: flex;
+    justify-content: space-between;
+}
+
+.postCon {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 500px);
+    grid-auto-rows: 550px;
+}
+
+.eachpost {
+    /* display: flex; */
+
+}
+
+.detailsCon {
+    display: flex;
+}
+
+.detailsCon img {
+    height: 270px;
+    width: 180px;
+}
+
+.bookInfoCon {
+    margin-left: 30px;
+}
+
+.title {
+    font-size: 2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+.yearAndIsbnCon {
+    color: grey;
+}
+
+.rating {
+    text-decoration: underline;
+}
+
+.reviewCon {
+    margin-top: 30px;
+    font-size: 19px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.5;
+    color: #333; 
+}
+

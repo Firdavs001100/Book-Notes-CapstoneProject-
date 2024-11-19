@@ -21,6 +21,7 @@ const db = new pg.Client({
 db.connect();
 
 let currentPostId;
+let sort_by = "id";
 
 async function gettingThePost() {
     const response = await db.query("SELECT * FROM notes WHERE id = $1", [currentPostId]);
@@ -31,7 +32,7 @@ async function gettingThePost() {
 
 app.get("/", async (req, res) => {
     try {
-        const response = await db.query("SELECT * FROM notes");
+        const response = await db.query(`SELECT * FROM notes ORDER BY ${sort_by} ASC`);
         const postsList = response.rows;
         
         res.render("index.ejs", {
@@ -93,7 +94,7 @@ app.post("/getBookTitle", async (req, res) => {
             isbn: data.docs[0].isbn[0],
             published_year: data.docs[0].first_publish_year
         };
-        console.log(info);
+        // console.log(info);
 
         res.render("postCreation.ejs", {
             info: info
@@ -125,7 +126,7 @@ app.post("/update/:id", async (req, res) => {
         currentPostId = parseInt(req.params.id, 10);
         const newRating = req.body.rating;
         const newReview = req.body.review;
-        
+
         await db.query("UPDATE notes SET rate = $1, review = $2 WHERE id = $3", [newRating, newReview, currentPostId]);
 
         const updatedPost = await gettingThePost();
@@ -142,6 +143,16 @@ app.post("/delete/:id", async (req, res) => {
         const idToDelete = parseInt(req.params.id, 10);
 
         await db.query("DELETE FROM notes WHERE id = $1", [idToDelete]);
+        res.redirect("/");
+    } catch (err) {
+        console.log("The request was failed. ", err.message);
+    }
+});
+
+app.get("/sort/:id", (req, res) => {
+    try {
+        sort_by = req.params.id;
+
         res.redirect("/");
     } catch (err) {
         console.log("The request was failed. ", err.message);
