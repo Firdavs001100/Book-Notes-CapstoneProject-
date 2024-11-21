@@ -1,0 +1,32 @@
+.postCon {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.eachPost {
+    margin-bottom: 40px;
+}
+
+.welcomeCon {
+    margin-bottom: 20px;
+}
+
+.welcomeCon p {
+    width: 400px;
+    line-height: 1.5;
+    text-align: center;
+    font-family: monospace;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.yearAndIsbnCon {
+    font-size: 15px;
+}
+
+.reviewCon {
+    margin-top: 20px;
+}

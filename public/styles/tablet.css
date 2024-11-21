@@ -1,0 +1,10 @@
+.postCon {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.eachPost {
+    margin-bottom: 40px;
+}
+
