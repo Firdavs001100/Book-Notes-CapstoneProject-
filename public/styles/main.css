@@ -1,3 +1,21 @@
+/* General styling */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+header, footer {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+/* Styling for the Main Page */
+
 .nav-item1 {
     margin-right: 15px;
 }
@@ -11,10 +29,9 @@
 
 .welcomeCon p {
     width: 600px;
-    letter-spacing: 2px;
     line-height: 2;
     text-align: center;
-    /* need to add font styling */
+    font-family: monospace;
 }
 
 .postIntroCon {
@@ -27,11 +44,6 @@
     justify-content: space-between;
     grid-template-columns: repeat(2, 500px);
     grid-auto-rows: 550px;
-}
-
-.eachpost {
-    /* display: flex; */
-
 }
 
 .detailsCon {
@@ -48,7 +60,7 @@
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 30px;
     text-transform: capitalize;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 10px;
@@ -70,3 +82,77 @@
     color: #333; 
 }
 
+/* Styling for review page */
+
+.buttonsCon {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.editBtn {
+    margin-right: 60px;
+    border: 2px solid green;
+    padding: 5px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+}
+
+.deleteBtn {
+    margin-right: 15px;
+    border: 2px solid red;
+    padding: 5px 16px;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+}
+
+/* Styling for Edit and Post Creation Pages */
+
+.ratingCon {
+    margin-top: 30px;
+}
+
+.editReviewCon, .postCreationReviewCon {
+    display: flex;
+    flex-direction: column;
+}
+
+.editReviewCon textarea, .postCreationReviewCon textarea {
+    height: 425px;
+    resize: none;
+    padding: 10px;
+    border: 2px solid grey;
+    border-radius: 8px;
+}
+
+.editAndPostRating, .bookNameSearch, .postCreationReviewCon {
+    font-size: 23px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+.editReview {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.updateBtn, .createBtn {
+    margin-top: 15px;
+    border: 2px solid #458d63;
+    padding: 5px 16px;
+    border-radius: 8px;
+    background-color: #458d63;
+    color: white;
+}
+
+.postCreationPage h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.postCreationReviewCon label {
+    margin-bottom: 10px;
+}

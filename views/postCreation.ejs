@@ -20,15 +20,14 @@
         <input type="hidden" name="published_year" value="<%= info.published_year %>">
         <input type="hidden" name="isbn" value="<%= info.isbn %>">
     <% } else { %>
-        <label for="bookName">Name of The book:</label>
+        <label class="bookNameSearch" for="bookName">Name of The book:</label>
         <div class="searchCon">
             <input class="bookName" type="text" id="bookName" name="bookName" placeholder="Type the book name...">
             <button type="submit" formaction="/getBookTitle">Search</button>
         </div>
     <% } %>
     <div class="ratingCon">
-        <label for="rating">Your Rating:</label>
-        <!-- <input class="rating" type="number" id="rating" name="rating" min="1" max="10" placeholder="1 to 10"> -->
+        <label class="editAndPostRating" for="rating">Your Rating:</label>
         <select class="rating" id="rating" name="rating">
             <option value="">Select a rating</option>
             <option value="1">1</option>
@@ -43,7 +42,7 @@
             <option value="10">10</option>
         </select>
     </div>
-    <div class="reviewCon">
+    <div class="reviewCon postCreationReviewCon">
         <label for="review">Your Review/Notes:</label>
         <textarea class="review" type="text" id="review" name="review" placeholder=""></textarea>
     </div>

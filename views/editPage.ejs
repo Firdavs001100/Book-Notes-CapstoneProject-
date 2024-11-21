@@ -13,14 +13,20 @@
             </div>
         </div>
         <div class="ratingCon">
-            <label for="rating">Rating:</label>
-            <input class="rating" name="rating" id="rating" value="<%= post.rating %>">
+            <label class="editAndPostRating" for="rating">Your Rating:</label>
+            <select class="rating" id="rating" name="rating">
+                <% for (let i=1; i <=10; i++) { %>
+                    <option value="<%= i %>" <%= post.rating == i ? 'selected' : '' %>><%= i %></option>
+                    <% } %>
+            </select>
         </div>
-        <div class="reviewCon">
-            <label for="review"></label>
-            <textarea class="review" id="review" name="review"><%= post.review %></textarea>
+        <div class="reviewCon editReviewCon">
+            <label class="editReview" for="review">My Notes:</label>
+            <textarea class="review" id="review" name="review" wrap="hard" spellcheck="false"><%= post.review %></textarea>
         </div>
-        <button class="updateBtn" type="submit">Update</button>
+        <div class="buttonsCon">
+            <button class="updateBtn" type="submit">Update</button>
+        </div>
     </div>
 </form>
 

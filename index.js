@@ -21,7 +21,7 @@ const db = new pg.Client({
 db.connect();
 
 let currentPostId;
-let sort_by = "id";
+let sort_by = "id ASC";
 
 async function gettingThePost() {
     const response = await db.query("SELECT * FROM notes WHERE id = $1", [currentPostId]);
@@ -32,7 +32,7 @@ async function gettingThePost() {
 
 app.get("/", async (req, res) => {
     try {
-        const response = await db.query(`SELECT * FROM notes ORDER BY ${sort_by} ASC`);
+        const response = await db.query(`SELECT * FROM notes ORDER BY ${sort_by}`);
         const postsList = response.rows;
         
         res.render("index.ejs", {
@@ -89,7 +89,7 @@ app.post("/getBookTitle", async (req, res) => {
         const data = response.data;
 
         const info = {
-            title: bookName,
+            title: data.docs[0].title,
             cover_id: data.docs[0].cover_i,
             isbn: data.docs[0].isbn[0],
             published_year: data.docs[0].first_publish_year
@@ -127,7 +127,7 @@ app.post("/update/:id", async (req, res) => {
         const newRating = req.body.rating;
         const newReview = req.body.review;
 
-        await db.query("UPDATE notes SET rate = $1, review = $2 WHERE id = $3", [newRating, newReview, currentPostId]);
+        await db.query("UPDATE notes SET rating = $1, review = $2 WHERE id = $3", [newRating, newReview, currentPostId]);
 
         const updatedPost = await gettingThePost();
         res.render("reviewPage.ejs", {
@@ -151,8 +151,13 @@ app.post("/delete/:id", async (req, res) => {
 
 app.get("/sort/:id", (req, res) => {
     try {
-        sort_by = req.params.id;
-
+        const sort = req.params.id;
+        if (sort == "title") {
+            sort_by = sort + " ASC";
+        } else {
+            sort_by = sort + " DESC";
+        }
+        
         res.redirect("/");
     } catch (err) {
         console.log("The request was failed. ", err.message);
