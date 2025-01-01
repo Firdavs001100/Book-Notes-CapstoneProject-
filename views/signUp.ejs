@@ -1,0 +1,27 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container signUpPageCon">
+    <button class="googleLogin">Sign-Up with google</button>
+    <div class="dividerCon">
+        <hr>
+        <div>
+            <p>OR</p>
+        </div>
+    </div>
+    <div class="manualLoginCon">
+        <form action="/signUp" method="POST">
+            <p>Sign-Up manually</p>
+            <input class="name" type="text" name="name" placeholder="Name"/>
+            <input class="email" type="email" name="email" placeholder="Email"/>
+            <input class="password" type="password" name="password" placeholder="Password"/>
+            <div class="submitCon">
+                <input class="checkbox" id="checkbox" name="rememberTheUser" value="yes"/>
+                <label for="checkbox">Remember Me</label>
+                <button class="loginBtn" type="submit">Sign-Up</button>
+            </div>
+            <p class="otherOptionCon">Already have one? <a href="/login.ejs">Log-in now</a></p>
+        </form>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

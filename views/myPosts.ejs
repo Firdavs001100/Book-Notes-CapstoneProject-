@@ -1,0 +1,49 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container myPostsPageCon">
+    <h1>My Posts</h1>
+    <div class="postIntroCon">
+        <h2>Review Section</h2>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/sort/rating">Rating</a></li>
+                <li><a class="dropdown-item" href="/sort/title">Title</a></li>
+                <li><a class="dropdown-item" href="/sort/published_year">Published Year</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="hrDivider">
+    <div class="postsCon">
+        <% if (locals.posts) { %>
+        <% locals.posts.forEach(post => {%>
+            <div class="eachPost">
+                <div class="detailsCon">
+                    <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
+                    <div class="bookInfoCon">
+                        <p class="title"><%= post.title %></p>
+                        <div class="yearAndIsbnCon">
+                            <p class="isbn">ISBN: <%= post.isbn %></p>
+                            <p class="publishedYear">Published Year: <%= post.published_year %></p>   
+                        </div>
+                        <p class="rating">My Rating: <%= post.rating %>/10</p>
+                    </div>
+                </div>
+                <div class="reviewCon">
+                    <p class="review">
+                        <%=  post.review.length > 350 ? post.review.substring(0, 350): post.review %>
+                        <a class="readMoreBtn" href="/review/<%= post.id %>">Read More</a>      
+                    </p>
+                </div>
+            </div>
+            <% }); %>
+        <% } else { %>
+            <p class="noReview">No review posted yet...</p>
+            <p class="createOptionCon">Do you want to <span><a href="/signUp.ejs">create one</a></span></p>
+        <% } %>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
