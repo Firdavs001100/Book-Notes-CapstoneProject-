@@ -1,25 +1,30 @@
 <%- include("partials/header.ejs") %>
 
 <div class="container signUpPageCon">
-    <button class="googleLogin">Sign-Up with google</button>
+    <div class="googleLogin">
+        <a href="/auth/google" class="btn btn-light btn-lg d-flex align-items-center justify-content-center shadow-sm border rounded-pill px-4 py-2">
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" class="me-2" width="24" height="24">
+            <span class="googleTitle">Sign-up with Google</span>
+        </a>
+    </div>
     <div class="dividerCon">
         <hr>
         <div>
             <p>OR</p>
         </div>
     </div>
-    <div class="manualLoginCon">
+    <div class="manualLoginAndSignUpCon">
         <form action="/signUp" method="POST">
-            <p>Sign-Up manually</p>
+            <p class="signUpTitle">Sign-Up Manually</p>
             <input class="name" type="text" name="name" placeholder="Name"/>
             <input class="email" type="email" name="email" placeholder="Email"/>
             <input class="password" type="password" name="password" placeholder="Password"/>
             <div class="submitCon">
-                <input class="checkbox" id="checkbox" name="rememberTheUser" value="yes"/>
+                <input class="checkbox" id="checkbox" name="rememberTheUser" type="checkbox"/>
                 <label for="checkbox">Remember Me</label>
-                <button class="loginBtn" type="submit">Sign-Up</button>
+                <button type="submit">Sign-Up</button>
             </div>
-            <p class="otherOptionCon">Already have one? <a href="/login.ejs">Log-in now</a></p>
+            <p class="otherOptionCon">Already have one?<span> <a href="/login">Login now</a></span> </p>
         </form>
     </div>
 </div>

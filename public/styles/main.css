@@ -16,6 +16,19 @@ header, footer {
 
 /* Styling for the Main Page */
 
+.navCon {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item1 {
+    margin: 0px 10px;
+}
+
+.nav-item2 {
+    margin-left: 15px;
+}
+
 .nav-item3 {
     margin-right: 15px;
 }
@@ -57,6 +70,15 @@ header, footer {
 
 .bookInfoCon {
     margin-left: 30px;
+    color: grey;
+}
+
+.bookInfoCon span {
+    color: #3f3f3f;
+}
+
+.reviewedBy span {
+    text-transform: capitalize;
 }
 
 .title {
@@ -64,10 +86,7 @@ header, footer {
     text-transform: capitalize;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 10px;
-}
-
-.yearAndIsbnCon {
-    color: grey;
+    color: #333;
 }
 
 .rating {
@@ -80,6 +99,12 @@ header, footer {
     font-family: 'Georgia', 'Times New Roman', serif;
     line-height: 1.5;
     color: #333; 
+}
+
+.noPostsCon, .myPostsPageCon > h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Styling for review page */
@@ -155,4 +180,127 @@ header, footer {
 
 .postCreationReviewCon label {
     margin-bottom: 10px;
+}
+
+/* Styling for Sign-up and login pages */
+.signUpPageCon, .loginPageCon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.googleLogin {
+    margin-top: 50px;
+}
+
+.googleLogin a {
+    width: 300px;
+}
+
+.dividerCon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.dividerCon hr {
+    position: relative;
+    width: 300px;
+    border: 1px solid #777474;
+    margin-top: 24px;
+}
+
+.dividerCon div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f0f0f0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; 
+    position: absolute;
+}
+
+.dividerCon div p {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif; 
+    color: #333; 
+    margin: 0;
+}
+
+.loginTitle, .signUpTitle {
+    font-size: 22px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #464545;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.manualLoginAndSignUpCon form{
+    display: flex;
+    flex-direction: column;
+}
+
+.email, .password, .name {
+    display: flex;
+    align-self: center;
+    background-color: #f8f9fa;
+    width: 300px;
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.2s ease-in-out;
+}
+.email:hover, .password:hover, .name:hover, .googleLogin a:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.submitCon, .otherOptionCon {
+    align-self: center;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+.submitCon button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.submitCon button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the My Posts Page */
+
+.noPostsCon {
+    margin-top: 70px;
+}
+
+.noReview {
+    font-size: 23px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #858181;
+    margin-top: 20px;
+}
+
+.createOption {
+    font-size: 25px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+    color: #424242;
 }

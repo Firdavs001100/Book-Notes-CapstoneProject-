@@ -3,7 +3,7 @@
 <div class="container mainPageCon">
     <div class="welcomeCon">
         <h1>Welcome to NoteCore</h1>
-        <p>In this website, I post reviews of books that I read and gave them a rating on how much I recommend it to others, as well as key insights in this book. So, I hope you enjoy reading my notes.</p>
+        <p>In this website, Everyone can post reviews of books that they read and gave them a rating on how much they would recommend it to others, as well as key insights in those books. So, we hope Everyone enjoys sharing and reading each others notes daily in our platform.</p>
     </div>
     <div class="postIntroCon">
         <h2>Review Section</h2>
@@ -12,6 +12,7 @@
                 Sort by
             </button>
             <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/sort/u.nickname">Reviewer</a></li>
                 <li><a class="dropdown-item" href="/sort/rating">Rating</a></li>
                 <li><a class="dropdown-item" href="/sort/title">Title</a></li>
                 <li><a class="dropdown-item" href="/sort/published_year">Published Year</a></li>
@@ -20,17 +21,18 @@
     </div>
     <hr class="hrDivider">
     <div class="postCon">
-        <% locals.posts.forEach(post => {%>
+        <% posts.forEach(post => {%>
         <div class="eachPost">
             <div class="detailsCon">
                 <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
                 <div class="bookInfoCon">
                     <p class="title"><%= post.title %></p>
                     <div class="yearAndIsbnCon">
-                        <p class="isbn">ISBN: <%= post.isbn %></p>
-                        <p class="publishedYear">Published Year: <%= post.published_year %></p>   
+                        <p class="isbn">ISBN: <span><%= post.isbn %></span></p>
+                        <p class="publishedYear">Published Year: <span><%= post.published_year %></span></p>   
                     </div>
-                    <p class="rating">My Rating: <%= post.rating %>/10</p>
+                    <p class="reviewedBy">Reviewed by: <span><%= post.nickname %></span></p>
+                    <p class="rating">Given Rating: <span><%= post.rating %>/10</span></p>
                 </div>
             </div>
             <div class="reviewCon">

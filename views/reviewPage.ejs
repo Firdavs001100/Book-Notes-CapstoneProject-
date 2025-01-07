@@ -5,22 +5,27 @@
         <div class="detailsCon">
             <img src="https://covers.openlibrary.org/b/id/<%= post.cover_id %>-M.jpg" alt="cover of the book">
             <div class="bookInfoCon">
-                <p class="title"><%= post.title %></p>
-                <div class="yearAndIsbnCon">
-                    <p class="isbn">ISBN: <%= post.isbn %></p>
-                    <p class="publishedYear">Published Year: <%= post.published_year %></p>
+                <div class="bookInfoCon">
+                    <p class="title"><%= post.title %></p>
+                    <div class="yearAndIsbnCon">
+                        <p class="isbn">ISBN: <span><%= post.isbn %></span></p>
+                        <p class="publishedYear">Published Year: <span><%= post.published_year %></span></p>   
+                    </div>
+                    <p class="reviewedBy">Reviewed by: <span><%= post.nickname %></span></p>
+                    <p class="rating">Given Rating: <span><%= post.rating %>/10</span></p>
                 </div>
-                <p class="rating">Rating: <%= post.rating %>/10</p>
             </div>
         </div>
         <div class="reviewCon">
             <h3>My Notes</h3>
             <p class="review"><%= post.review %></p>
         </div>
+        <% if (user == post.user_id) { %>
         <div class="buttonsCon">
             <a class="editBtn" href="/edit/<%= post.id %>">Edit</a>
             <button class="deleteBtn" type="submit">Delete</button>
         </div>
+        <% } %>
     </div>
 </form>
 
